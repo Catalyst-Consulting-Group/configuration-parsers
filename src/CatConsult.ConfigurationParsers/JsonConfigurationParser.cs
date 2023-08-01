@@ -7,9 +7,9 @@ namespace CatConsult.ConfigurationParsers;
 ///
 /// Heavily inspired by: https://github.com/aws/aws-dotnet-extensions-configuration/blob/master/src/Amazon.Extensions.Configuration.SystemsManager/Internal/JsonConfigurationParser.cs
 /// </summary>
-public class JsonConfigurationConfigurationParser : ConfigurationParser
+public class JsonConfigurationParser : ConfigurationParser
 {
-    private JsonConfigurationConfigurationParser() { }
+    private JsonConfigurationParser() { }
 
     public static IDictionary<string, string?> Parse(string json)
     {
@@ -33,7 +33,7 @@ public class JsonConfigurationConfigurationParser : ConfigurationParser
             throw new FormatException($"Expected a JSON object, got: {Enum.GetName(root.ValueKind)}");
         }
 
-        var parser = new JsonConfigurationConfigurationParser();
+        var parser = new JsonConfigurationParser();
         parser.ParseElement(root);
 
         return parser.Data;

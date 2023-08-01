@@ -8,7 +8,7 @@ public class YamlConfigurationParserTests
     public void Parse_Parses_Valid_Yaml_Object_String()
     {
         var yaml = File.ReadAllText("fixtures/object.yaml");
-        var data = YamlConfigurationConfigurationParser.Parse(yaml);
+        var data = YamlConfigurationParser.Parse(yaml);
 
         ValidateObject(data);
     }
@@ -47,7 +47,7 @@ public class YamlConfigurationParserTests
     public void Parse_Parses_Valid_Yaml_Object_Stream()
     {
         var yaml = File.OpenRead("fixtures/object.yaml");
-        var data = YamlConfigurationConfigurationParser.Parse(yaml);
+        var data = YamlConfigurationParser.Parse(yaml);
 
         ValidateObject(data);
     }
@@ -57,7 +57,7 @@ public class YamlConfigurationParserTests
     {
         var yaml = File.ReadAllText("fixtures/empty.yaml");
 
-        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+        var act = () => YamlConfigurationParser.Parse(yaml);
 
         act.Should().Throw<FormatException>()
             .WithMessage("Expected 1 YAML document, got: 0");
@@ -69,7 +69,7 @@ public class YamlConfigurationParserTests
     {
         var yaml = File.OpenRead("fixtures/empty.yaml");
 
-        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+        var act = () => YamlConfigurationParser.Parse(yaml);
 
         act.Should().Throw<FormatException>()
             .WithMessage("Expected 1 YAML document, got: 0");
@@ -80,7 +80,7 @@ public class YamlConfigurationParserTests
     {
         var yaml = File.ReadAllText("fixtures/multiple-documents.yaml");
 
-        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+        var act = () => YamlConfigurationParser.Parse(yaml);
 
         act.Should().Throw<FormatException>()
             .WithMessage("Expected 1 YAML document, got: 2");
@@ -92,7 +92,7 @@ public class YamlConfigurationParserTests
     {
         var yaml = File.OpenRead("fixtures/multiple-documents.yaml");
 
-        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+        var act = () => YamlConfigurationParser.Parse(yaml);
 
         act.Should().Throw<FormatException>()
             .WithMessage("Expected 1 YAML document, got: 2");
@@ -103,7 +103,7 @@ public class YamlConfigurationParserTests
     {
         var yaml = File.ReadAllText("fixtures/array.yaml");
 
-        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+        var act = () => YamlConfigurationParser.Parse(yaml);
 
         act.Should().Throw<FormatException>()
             .WithMessage("Expected the root node to be a YAML object");
@@ -114,7 +114,7 @@ public class YamlConfigurationParserTests
     {
         var yaml = File.OpenRead("fixtures/array.yaml");
 
-        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+        var act = () => YamlConfigurationParser.Parse(yaml);
 
         act.Should().Throw<FormatException>()
             .WithMessage("Expected the root node to be a YAML object");
@@ -125,7 +125,7 @@ public class YamlConfigurationParserTests
     {
         const string yaml = "blah blah";
 
-        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+        var act = () => YamlConfigurationParser.Parse(yaml);
 
         act.Should().Throw<FormatException>()
             .WithMessage("Expected the root node to be a YAML object");
@@ -138,7 +138,7 @@ public class YamlConfigurationParserTests
         var bytes = Encoding.UTF8.GetBytes("blah blah");
         var yaml = new MemoryStream(bytes);
 
-        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+        var act = () => YamlConfigurationParser.Parse(yaml);
 
         act.Should().Throw<FormatException>()
             .WithMessage("Expected the root node to be a YAML object");

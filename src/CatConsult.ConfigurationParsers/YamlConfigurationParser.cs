@@ -5,9 +5,9 @@ namespace CatConsult.ConfigurationParsers;
 /// <summary>
 /// A configuration parser that accepts YAML input and returns a dictionary of .NET-formatted configuration values.
 /// </summary>
-public class YamlConfigurationConfigurationParser : ConfigurationParser
+public class YamlConfigurationParser : ConfigurationParser
 {
-    private YamlConfigurationConfigurationParser() { }
+    private YamlConfigurationParser() { }
 
     public static IDictionary<string, string?> Parse(string yaml)
     {
@@ -40,7 +40,7 @@ public class YamlConfigurationConfigurationParser : ConfigurationParser
             throw new FormatException("Expected the root node to be a YAML object");
         }
 
-        var parser = new YamlConfigurationConfigurationParser();
+        var parser = new YamlConfigurationParser();
         parser.ParseNode(root);
 
         return parser.Data;
