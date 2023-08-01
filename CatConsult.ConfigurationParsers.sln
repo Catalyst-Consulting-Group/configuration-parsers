@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{11D7D972-19F6-46EB-9056-C12949E977D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatConsult.ConfigurationParsers.Tests", "test\CatConsult.ConfigurationParsers.Tests\CatConsult.ConfigurationParsers.Tests.csproj", "{6EDEFDB2-A4CC-4377-BEE1-3AF603278381}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{542D54F5-6AA6-4689-8A1F-887B53E12D92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatConsult.ConfigurationParsers", "src\CatConsult.ConfigurationParsers\CatConsult.ConfigurationParsers.csproj", "{B2D075A2-BCC6-4AD2-BE1C-53AA89323F82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6A5054AE-8F93-4D9D-AD2C-460F420AB70C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EDEFDB2-A4CC-4377-BEE1-3AF603278381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EDEFDB2-A4CC-4377-BEE1-3AF603278381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EDEFDB2-A4CC-4377-BEE1-3AF603278381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EDEFDB2-A4CC-4377-BEE1-3AF603278381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2D075A2-BCC6-4AD2-BE1C-53AA89323F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2D075A2-BCC6-4AD2-BE1C-53AA89323F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2D075A2-BCC6-4AD2-BE1C-53AA89323F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D075A2-BCC6-4AD2-BE1C-53AA89323F82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6EDEFDB2-A4CC-4377-BEE1-3AF603278381} = {11D7D972-19F6-46EB-9056-C12949E977D7}
+		{B2D075A2-BCC6-4AD2-BE1C-53AA89323F82} = {542D54F5-6AA6-4689-8A1F-887B53E12D92}
+	EndGlobalSection
+EndGlobal
