@@ -9,7 +9,7 @@ public class JsonConfigurationParserTests
     public void Parse_Parses_Valid_Json_Object_String()
     {
         var json = File.ReadAllText("fixtures/object.json");
-        var data = JsonConfigurationParser.Parse(json);
+        var data = JsonConfigurationConfigurationParser.Parse(json);
 
         ValidateObject(data);
     }
@@ -48,7 +48,7 @@ public class JsonConfigurationParserTests
     public void Parse_Parses_Valid_Json_Object_Stream()
     {
         var json = File.OpenRead("fixtures/object.json");
-        var data = JsonConfigurationParser.Parse(json);
+        var data = JsonConfigurationConfigurationParser.Parse(json);
 
         ValidateObject(data);
     }
@@ -58,7 +58,7 @@ public class JsonConfigurationParserTests
     {
         var json = File.ReadAllText("fixtures/array.json");
 
-        var act = () => JsonConfigurationParser.Parse(json);
+        var act = () => JsonConfigurationConfigurationParser.Parse(json);
 
         act.Should().Throw<FormatException>()
             .WithMessage("Expected a JSON object, got: Array");
@@ -69,7 +69,7 @@ public class JsonConfigurationParserTests
     {
         var json = File.OpenRead("fixtures/array.json");
 
-        var act = () => JsonConfigurationParser.Parse(json);
+        var act = () => JsonConfigurationConfigurationParser.Parse(json);
 
         act.Should().Throw<FormatException>()
             .WithMessage("Expected a JSON object, got: Array");
@@ -80,7 +80,7 @@ public class JsonConfigurationParserTests
     {
         const string json = "definitely not json";
 
-        var act = () => JsonConfigurationParser.Parse(json);
+        var act = () => JsonConfigurationConfigurationParser.Parse(json);
 
         act.Should().Throw<JsonException>();
     }
@@ -92,7 +92,7 @@ public class JsonConfigurationParserTests
         var bytes = Encoding.UTF8.GetBytes("definitely not json");
         var json = new MemoryStream(bytes);
 
-        var act = () => JsonConfigurationParser.Parse(json);
+        var act = () => JsonConfigurationConfigurationParser.Parse(json);
 
         act.Should().Throw<JsonException>();
     }

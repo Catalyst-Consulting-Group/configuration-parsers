@@ -1,7 +1,3 @@
-using System.Globalization;
-
-using Microsoft.Extensions.Configuration;
-
 using YamlDotNet.RepresentationModel;
 
 namespace CatConsult.ConfigurationParsers;
@@ -9,13 +5,9 @@ namespace CatConsult.ConfigurationParsers;
 /// <summary>
 /// A configuration parser that accepts YAML input and returns a dictionary of .NET-formatted configuration values.
 /// </summary>
-public class YamlConfigurationParser
+public class YamlConfigurationConfigurationParser : ConfigurationParser
 {
-    private readonly SortedDictionary<string, string?> _data = new(StringComparer.OrdinalIgnoreCase);
-    private readonly Stack<string> _context = new();
-    private string _currentPath = string.Empty;
-
-    private YamlConfigurationParser() { }
+    private YamlConfigurationConfigurationParser() { }
 
     public static IDictionary<string, string?> Parse(string yaml)
     {
@@ -48,10 +40,10 @@ public class YamlConfigurationParser
             throw new FormatException("Expected the root node to be a YAML object");
         }
 
-        var parser = new YamlConfigurationParser();
+        var parser = new YamlConfigurationConfigurationParser();
         parser.ParseNode(root);
 
-        return parser._data;
+        return parser.Data;
     }
 
     private void ParseNode(YamlNode node)
@@ -72,7 +64,7 @@ public class YamlConfigurationParser
                 var i = 0;
                 foreach (var property in sequence.Children)
                 {
-                    PushContext(i.ToString(CultureInfo.InvariantCulture));
+                    PushContext(i);
                     ParseNode(property);
                     PopContext();
                     i++;
@@ -81,20 +73,8 @@ public class YamlConfigurationParser
                 break;
 
             case YamlScalarNode scalar:
-                _data.TryAdd(_currentPath, scalar.Value);
+                SetValue(scalar.Value);
                 break;
         }
-    }
-
-    private void PushContext(string context)
-    {
-        _context.Push(context);
-        _currentPath = ConfigurationPath.Combine(_context.Reverse());
-    }
-
-    private void PopContext()
-    {
-        _context.Pop();
-        _currentPath = ConfigurationPath.Combine(_context.Reverse());
     }
 }

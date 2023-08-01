@@ -1,7 +1,4 @@
-﻿using System.Globalization;
-using System.Text.Json;
-
-using Microsoft.Extensions.Configuration;
+﻿using System.Text.Json;
 
 namespace CatConsult.ConfigurationParsers;
 
@@ -10,13 +7,9 @@ namespace CatConsult.ConfigurationParsers;
 ///
 /// Heavily inspired by: https://github.com/aws/aws-dotnet-extensions-configuration/blob/master/src/Amazon.Extensions.Configuration.SystemsManager/Internal/JsonConfigurationParser.cs
 /// </summary>
-public class JsonConfigurationParser
+public class JsonConfigurationConfigurationParser : ConfigurationParser
 {
-    private readonly SortedDictionary<string, string?> _data = new(StringComparer.OrdinalIgnoreCase);
-    private readonly Stack<string> _context = new();
-    private string _currentPath = string.Empty;
-
-    private JsonConfigurationParser() { }
+    private JsonConfigurationConfigurationParser() { }
 
     public static IDictionary<string, string?> Parse(string json)
     {
@@ -40,10 +33,10 @@ public class JsonConfigurationParser
             throw new FormatException($"Expected a JSON object, got: {Enum.GetName(root.ValueKind)}");
         }
 
-        var parser = new JsonConfigurationParser();
+        var parser = new JsonConfigurationConfigurationParser();
         parser.ParseElement(root);
 
-        return parser._data;
+        return parser.Data;
     }
 
     private void ParseElement(JsonElement element)
@@ -64,7 +57,7 @@ public class JsonConfigurationParser
                 var i = 0;
                 foreach (var property in element.EnumerateArray())
                 {
-                    PushContext(i.ToString(CultureInfo.InvariantCulture));
+                    PushContext(i);
                     ParseElement(property);
                     PopContext();
                     i++;
@@ -76,24 +69,12 @@ public class JsonConfigurationParser
             case JsonValueKind.Number:
             case JsonValueKind.True:
             case JsonValueKind.False:
-                _data.TryAdd(_currentPath, element.ToString().ToLower());
+                SetValue(element.ToString().ToLower());
                 break;
 
             case JsonValueKind.Null:
-                _data.TryAdd(_currentPath, null);
+                SetValue(null);
                 break;
         }
-    }
-
-    private void PushContext(string context)
-    {
-        _context.Push(context);
-        _currentPath = ConfigurationPath.Combine(_context.Reverse());
-    }
-
-    private void PopContext()
-    {
-        _context.Pop();
-        _currentPath = ConfigurationPath.Combine(_context.Reverse());
     }
 }
