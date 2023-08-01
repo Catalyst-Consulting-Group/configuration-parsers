@@ -1,0 +1,40 @@
+{
+  "Object": {
+    "String": "string",
+    "Number": 1,
+    "True": true,
+    "False": false,
+    "Null": null,
+    "NestedObject": {
+      "String": "string",
+      "Number": 1,
+      "True": true,
+      "False": false,
+      "Null": null
+    }
+  },
+  "ArrayOfObject": [
+    {
+      "ArrayObject1": {
+        "String": "string",
+        "Number": 1,
+        "True": true,
+        "False": false,
+        "Null": null
+      }
+    },
+    {
+      "ArrayObject2": {
+        "String": "string",
+        "Number": 1,
+        "True": true,
+        "False": false,
+        "Null": null
+      }
+    }
+  ],
+  "ArrayOfString": [
+    "foobar",
+    "baz"
+  ]
+}

@@ -25,5 +25,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\CatConsult.ConfigurationParsers\CatConsult.ConfigurationParsers.csproj" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <Content Include="fixtures/*" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
 </Project>
