@@ -51,9 +51,55 @@ public class YamlConfigurationParserTests
 
         ValidateObject(data);
     }
+    
+    [Fact]
+    public void Parse_Throws_On_Empty_Yaml_String()
+    {
+        var yaml = File.ReadAllText("fixtures/empty.yaml");
+
+        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+
+        act.Should().Throw<FormatException>()
+            .WithMessage("Expected 1 YAML document, got: 0");
+    }
+
 
     [Fact]
-    public void Parse_Returns_Empty_On_Yaml_Array_String()
+    public void Parse_Throws_On_Empty_Yaml_Stream()
+    {
+        var yaml = File.OpenRead("fixtures/empty.yaml");
+
+        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+
+        act.Should().Throw<FormatException>()
+            .WithMessage("Expected 1 YAML document, got: 0");
+    }
+    
+    [Fact]
+    public void Parse_Throws_On_Multiple_Documents_Yaml_String()
+    {
+        var yaml = File.ReadAllText("fixtures/multiple-documents.yaml");
+
+        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+
+        act.Should().Throw<FormatException>()
+            .WithMessage("Expected 1 YAML document, got: 2");
+    }
+
+
+    [Fact]
+    public void Parse_Throws_On_Multiple_Documents_Yaml_Stream()
+    {
+        var yaml = File.OpenRead("fixtures/multiple-documents.yaml");
+
+        var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
+
+        act.Should().Throw<FormatException>()
+            .WithMessage("Expected 1 YAML document, got: 2");
+    }
+
+    [Fact]
+    public void Parse_Throws_On_Yaml_Array_String()
     {
         var yaml = File.ReadAllText("fixtures/array.yaml");
 
@@ -64,7 +110,7 @@ public class YamlConfigurationParserTests
     }
 
     [Fact]
-    public void Parse_Returns_Empty_On_Yaml_Array_Stream()
+    public void Parse_Throws_On_Yaml_Array_Stream()
     {
         var yaml = File.OpenRead("fixtures/array.yaml");
 
@@ -75,9 +121,9 @@ public class YamlConfigurationParserTests
     }
 
     [Fact]
-    public void Parse_Returns_Empty_On_Invalid_Yaml_String()
+    public void Parse_Throws_On_Scalar_Root_Yaml_String()
     {
-        const string yaml = "definitely not yaml";
+        const string yaml = "blah blah";
 
         var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
 
@@ -87,9 +133,9 @@ public class YamlConfigurationParserTests
 
 
     [Fact]
-    public void Parse_Returns_Empty_On_Invalid_Yaml_Stream()
+    public void Parse_Throws_On_Scalar_Root_Yaml_Stream()
     {
-        var bytes = Encoding.UTF8.GetBytes("definitely not yaml");
+        var bytes = Encoding.UTF8.GetBytes("blah blah");
         var yaml = new MemoryStream(bytes);
 
         var act = () => YamlConfigurationConfigurationParser.Parse(yaml);
