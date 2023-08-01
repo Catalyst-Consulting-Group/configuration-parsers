@@ -1,6 +1,6 @@
 # CatConsult.ConfigurationParsers
 
-A collection of parsers that transform configuration data into .NET Configuration-compatible format.
+A collection of parsers for converting common configuration files to `Microsoft.Extensions.Configuration` format.
 
 ## JsonConfigurationParser
 
