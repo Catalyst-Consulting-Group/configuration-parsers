@@ -1,0 +1,30 @@
+Object:
+  String: string
+  Number: 1
+  'True': true
+  'False': false
+  'Null':
+  NestedObject:
+    String: string
+    Number: 1
+    'True': true
+    'False': false
+    'Null':
+
+ArrayOfObject:
+  - ArrayObject1:
+      String: string
+      Number: 1
+      'True': true
+      'False': false
+      'Null':
+  - ArrayObject2:
+      String: string
+      Number: 1
+      'True': true
+      'False': false
+      'Null':
+
+ArrayOfString:
+  - foobar
+  - baz
