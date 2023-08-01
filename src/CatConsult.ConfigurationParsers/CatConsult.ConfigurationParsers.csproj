@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <PackageId>CatConsult.AppConfigConfigurationProvider</PackageId>
+    <PackageId>CatConsult.ConfigurationParsers</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/Catalyst-Consulting-Group/configuration-parsers</PackageProjectUrl>
