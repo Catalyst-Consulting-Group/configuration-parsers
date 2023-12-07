@@ -66,6 +66,9 @@ public class JsonConfigurationParser : ConfigurationParser
                 break;
 
             case JsonValueKind.String:
+                SetValue(element.GetString());
+                break;
+
             case JsonValueKind.Number:
             case JsonValueKind.True:
             case JsonValueKind.False:

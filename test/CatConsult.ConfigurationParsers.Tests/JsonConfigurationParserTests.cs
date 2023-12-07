@@ -17,24 +17,28 @@ public class JsonConfigurationParserTests
     private static void ValidateObject(IDictionary<string, string?> data)
     {
         data.Should().Contain("Object:String", "string");
+        data.Should().Contain("Object:String2", "Uppercase");
         data.Should().Contain("Object:Number", "1");
         data.Should().Contain("Object:True", "true");
         data.Should().Contain("Object:False", "false");
         data.Should().Contain("Object:Null", null);
 
         data.Should().Contain("Object:NestedObject:String", "string");
+        data.Should().Contain("Object:NestedObject:String2", "Uppercase");
         data.Should().Contain("Object:NestedObject:Number", "1");
         data.Should().Contain("Object:NestedObject:True", "true");
         data.Should().Contain("Object:NestedObject:False", "false");
         data.Should().Contain("Object:NestedObject:Null", null);
 
         data.Should().Contain("ArrayOfObject:0:ArrayObject1:String", "string");
+        data.Should().Contain("ArrayOfObject:0:ArrayObject1:String2", "Uppercase");
         data.Should().Contain("ArrayOfObject:0:ArrayObject1:Number", "1");
         data.Should().Contain("ArrayOfObject:0:ArrayObject1:True", "true");
         data.Should().Contain("ArrayOfObject:0:ArrayObject1:False", "false");
         data.Should().Contain("ArrayOfObject:0:ArrayObject1:Null", null);
 
         data.Should().Contain("ArrayOfObject:1:ArrayObject2:String", "string");
+        data.Should().Contain("ArrayOfObject:1:ArrayObject2:String2", "Uppercase");
         data.Should().Contain("ArrayOfObject:1:ArrayObject2:Number", "1");
         data.Should().Contain("ArrayOfObject:1:ArrayObject2:True", "true");
         data.Should().Contain("ArrayOfObject:1:ArrayObject2:False", "false");
@@ -42,6 +46,7 @@ public class JsonConfigurationParserTests
 
         data.Should().Contain("ArrayOfString:0", "foobar");
         data.Should().Contain("ArrayOfString:1", "baz");
+        data.Should().Contain("ArrayOfString:2", "Uppercase");
     }
 
     [Fact]

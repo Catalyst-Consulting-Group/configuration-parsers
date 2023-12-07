@@ -1,11 +1,13 @@
 Object:
   String: string
+  String2: Uppercase
   Number: 1
   'True': true
   'False': false
   'Null':
   NestedObject:
     String: string
+    String2: Uppercase
     Number: 1
     'True': true
     'False': false
@@ -14,12 +16,14 @@ Object:
 ArrayOfObject:
   - ArrayObject1:
       String: string
+      String2: Uppercase
       Number: 1
       'True': true
       'False': false
       'Null':
   - ArrayObject2:
       String: string
+      String2: Uppercase
       Number: 1
       'True': true
       'False': false
@@ -28,3 +32,4 @@ ArrayOfObject:
 ArrayOfString:
   - foobar
   - baz
+  - Uppercase
