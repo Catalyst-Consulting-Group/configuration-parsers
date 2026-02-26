@@ -14,15 +14,18 @@ public abstract class ConfigurationParser
 
     protected void SetValue(string? value)
     {
-        _data.TryAdd(_currentPath, value);
+        if (!_data.ContainsKey(_currentPath))
+        {
+            _data.Add(_currentPath, value);
+        }
     }
-    
+
     protected void PushContext(string context)
     {
         _context.Push(context);
         _currentPath = ConfigurationPath.Combine(_context.Reverse());
     }
-    
+
     protected void PushContext(int i)
     {
         _context.Push(i.ToString(CultureInfo.InvariantCulture));

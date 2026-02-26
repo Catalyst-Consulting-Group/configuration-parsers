@@ -51,8 +51,11 @@ public class YamlConfigurationParser : ConfigurationParser
         switch (node)
         {
             case YamlMappingNode mapping:
-                foreach ((YamlNode key, YamlNode value) in mapping)
+                foreach (var item in mapping)
                 {
+                    var key = item.Key;
+                    var value = item.Value;
+
                     PushContext(key.ToString());
                     ParseNode(value);
                     PopContext();
