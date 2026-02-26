@@ -30,7 +30,7 @@ public class JsonConfigurationParser : ConfigurationParser
         var root = document.RootElement;
         if (root.ValueKind is not JsonValueKind.Object)
         {
-            throw new FormatException($"Expected a JSON object, got: {Enum.GetName(root.ValueKind)}");
+            throw new FormatException($"Expected a JSON object, got: {Enum.GetName(root.ValueKind.GetType(), root.ValueKind)}");
         }
 
         var parser = new JsonConfigurationParser();
